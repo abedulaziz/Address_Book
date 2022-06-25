@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-// const Router = require("./routes")
+const Router = require("./routes")
 
 const app = express();
 
@@ -28,7 +28,10 @@ db.once("open", function () {
 app.get("/", (req, res) => {
   res.send("haha")
 
-
 })
 
-app.listen(5000)
+app.use(Router)
+
+app.listen(5000, () => {
+  console.log("Server is running at port 5000");
+})
