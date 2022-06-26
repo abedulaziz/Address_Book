@@ -5,6 +5,8 @@ const app = express();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken")
 
+const authenticateToken = require("./middleware/auth")
+
 const User = require("./models/User");
 
 
@@ -59,6 +61,7 @@ app.post("/api/users/register", async (req, res) => {
 });
 
 
+// login
 app.post("/api/users/login", async (req, res) => {
   
   // const findEmail =  await User.find({email: req.body.email})
@@ -69,6 +72,21 @@ app.post("/api/users/login", async (req, res) => {
 
   try {
     res.json({"access_token": access_token})
+  }catch (err) {
+    console.log(err);
+    res.send(err)
+  }
+
+})
+
+
+// login
+app.get("/api/users/get_contacts", authenticateToken, async (req, res) => {
+  
+  const contacts = await User.find()
+
+  try {
+    res.json(contacts)
   }catch (err) {
     console.log(err);
     res.send(err)
