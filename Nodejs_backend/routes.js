@@ -2,10 +2,11 @@ require("dotenv").config()
 
 const express = require("express");
 const app = express();
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken")
 
 const authenticateToken = require("./middleware/auth")
+const checkDuplicate = require("./middleware/checkDuplicates")
+const AuthController = require("./controllers/AuthContorller")
 
 const User = require("./models/User");
 
@@ -41,48 +42,15 @@ module.exports = app;
 
 
 // register api
-app.post("/api/users/register", async (req, res) => {
-
-  const hashedPwd = await bcrypt.hash(req.body.password, 10)
-
-  const user = new User({
-    name: req.body.name,
-    email: req.body.email,
-    password: hashedPwd,
-    phone_number: req.body.phone_number,
-  })
-
-  try {
-    user.save()
-    res.send(user);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
-
+app.post("/api/users/register", checkDuplicate, AuthController.register);
 
 // login
-app.post("/api/users/login", async (req, res) => {
-  
-  // const findEmail =  await User.find({email: req.body.email})
-
-  const user = {email: req.body.email}
-  const access_token = jwt.sign(user ,process.env.ACCESS_TOKEN_SECRET)
+app.post("/api/users/login", AuthController.login)
 
 
-  try {
-    res.json({"access_token": access_token})
-  }catch (err) {
-    console.log(err);
-    res.send(err)
-  }
-
-})
-
-
-// login
-app.get("/api/users/get_contacts", authenticateToken, async (req, res) => {
-  
+// 
+app.get("/api/users/:user_id/get_contacts", authenticateToken, async (req, res, user_id) => {
+  console.log(user_id);
   const contacts = await User.find()
 
   try {

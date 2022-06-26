@@ -2,10 +2,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const Router = require("./routes")
 
-
+const cookieParser = require("cookie-parser")
 
 const app = express();
 
+app.use(cookieParser())
 app.use(express.json());
 
 const username = "AbdulAziz";
@@ -16,8 +17,7 @@ const dbname = "myFirstDatabase";
 mongoose.connect(
   `mongodb+srv://${username}:${password}@${cluster}.mongodb.net/${dbname}?retryWrites=true&w=majority`, 
   {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+    autoIndex: true, 
   }
 );
 
