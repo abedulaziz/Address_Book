@@ -1,7 +1,8 @@
 import React from 'react'
 import Head from "react-helmet";
+import { Link } from 'react-router-dom';
 
-import Input from './form_components/input'
+import Input from './form_components/input';
 
 const SignUp = () => {
 
@@ -17,10 +18,10 @@ const SignUp = () => {
 
     <main>
 
-      <div className="sign-in">
+      <div className="sign-up">
         <div className="container">
           <div className="form_wrapper">
-            <form id="loginUserForm">
+            <form id="registerUserForm">
 
               <h1>Sign Up</h1>
               <p className='subtitle'>Sign-up and create your contacts</p>
@@ -40,12 +41,13 @@ const SignUp = () => {
                   <option value="female">Female</option>
                 </select>
               </div>
-              
+
               <Input className="dob" type="date" name="date_of_birth" />
 
               <div className="submit">
                 <input id="register" type="button" value="Register" />
               </div>
+              <p className='redirect'>Already have an existing account? <Link to="/">sign-in</Link></p>
 
             </form>
           </div>

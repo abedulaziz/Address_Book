@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from "react-helmet";
+import { Link } from 'react-router-dom';
 
 import Input from './pages/form_components/input'
 
@@ -29,6 +30,7 @@ const SignIn = () => {
               <div className="submit">
                 <input id="login" type="button" value="Log in" />
               </div>
+              <p className='redirect'>Don't have an existing account? <Link to="/sign-up">register</Link></p>
 
             </form>
           </div>
