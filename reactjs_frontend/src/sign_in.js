@@ -1,6 +1,8 @@
 import React from 'react'
 import Head from "react-helmet";
 
+import Input from './pages/form_components/input'
+
 const SignIn = () => {
 
   return (
@@ -21,16 +23,13 @@ const SignIn = () => {
             <form id="loginUserForm">
 
               <h1>Sign In</h1>
-              <div className="email">
-                <input type="text" name="email" placeholder="Email" max="100" />
-              </div>
-              <div className="password">
-                <input type="password" name="password" placeholder="Password" max="100" />
-              </div>
+              <p className='subtitle'>Sign-in and access your contacts</p>
+              <Input className="email" type="text" name="email" placeholder="Email" />
+              <Input className="password" type="password" name="password" placeholder="Password" />
               <div className="submit">
                 <input id="login" type="button" value="Log in" />
               </div>
-              
+
             </form>
           </div>
         </div>

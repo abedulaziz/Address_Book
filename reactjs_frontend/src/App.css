@@ -1,3 +1,7 @@
+:root {
+  --theme-color: rgb(62, 255, 107)
+}
+
 * {
   box-sizing: border-box;
 }
@@ -39,6 +43,12 @@ body {
 
 .form_wrapper h1 {
   font-weight: 900;
+  margin-bottom: 2px;
+}
+
+.form_wrapper .subtitle {
+  margin: 0 0 30px;
+  color: #979797;
 }
 
 .form_wrapper form > div {
@@ -82,7 +92,7 @@ body {
   border-radius: 25px;
   border: none;
   font-weight: 700;
-  background-color: aqua;
+  background-color: var(--theme-color);
   color: #FFF;
   box-shadow: 0 5px 10px #C8C7C7;
   cursor: pointer;
