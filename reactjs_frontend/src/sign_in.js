@@ -16,7 +16,7 @@ const SignIn = () => {
       <title>Surveys Builder - Sign-in</title>
     </Head>
 
-    <main>
+    <main className='centered'>
 
       <div className="sign-in">
         <div className="container">

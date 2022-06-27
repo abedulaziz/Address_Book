@@ -5,8 +5,11 @@ const app = express();
 const jwt = require("jsonwebtoken")
 
 const authenticateToken = require("./middleware/auth")
+
 const checkDuplicate = require("./middleware/checkDuplicates")
+
 const AuthController = require("./controllers/AuthContorller")
+const ContactsController = require("./controllers/ContactsController")
 
 const User = require("./models/User");
 
@@ -47,20 +50,8 @@ app.post("/api/users/register", checkDuplicate, AuthController.register);
 // login
 app.post("/api/users/login", AuthController.login)
 
-
-// 
-app.get("/api/users/:user_id/get_contacts", authenticateToken, async (req, res, user_id) => {
-  console.log(user_id);
-  const contacts = await User.find()
-
-  try {
-    res.json(contacts)
-  }catch (err) {
-    console.log(err);
-    res.send(err)
-  }
-
-})
+// get user contacts
+app.get("/api/users/:user_id/get_contacts", authenticateToken, ContactsController)
 
 
 module.exports = app

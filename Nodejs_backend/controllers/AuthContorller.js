@@ -15,18 +15,14 @@ const createToken = (id) => {
 module.exports.register = async(req, res) => {
 
   const hashedPwd = await bcrypt.hash(req.body.password, 10)
-  // const user = new User({
-  //   name: req.body.name,
-  //   email: req.body.email,
-  //   password: hashedPwd,
-  //   phone_number: req.body.phone_number,
-  // })
 
   const user = await User.create({
     name: req.body.name,
     email: req.body.email,
     password: hashedPwd,
     phone_number: req.body.phone_number,
+    contacts: req.body.contacts
+
   })
 
   const token = createToken(user._id)
@@ -43,7 +39,7 @@ module.exports.register = async(req, res) => {
 // login
 module.exports.login = async(req, res) => {
 
-    // const findEmail =  await User.find({email: req.body.email})
+    const findEmail =  await User.find({email: req.body.email})
     const user = {email: req.body.email}
     const access_token = jwt.sign(user ,process.env.ACCESS_TOKEN_SECRET)
   

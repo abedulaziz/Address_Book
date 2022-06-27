@@ -10,9 +10,31 @@ body {
   background-color: #FFF;
   min-height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-  font-family: 'Raleway', sans-serif;}
+  font-family: 'Raleway', sans-serif;
+}
+
+#root {
+  width: 100%;
+}
+
+.content_wrapper {
+  height: 100%;
+  width: 100%;
+  background-color: #f8f8f8;
+  padding-top: 20px;
+}
+
+
+main {
+  width: 100%;
+}
+
+main.centered {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
 
 .container {
   padding: 0 8vw;
@@ -110,3 +132,40 @@ body {
   text-decoration: none;
 }
 
+
+/* contacts page */
+.address_book_heading {
+  border-bottom: 1px solid rgb(168, 168, 168);
+  margin: 0 0 50px;
+  padding: 20px 0 30px
+}
+
+.address_book_heading h2 {
+  margin: 0
+}
+
+
+.contacts table {
+  background-color: #FFF;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgb(165, 165, 165);
+}
+
+.contacts table thead th{
+  padding: 10px;
+  text-align: left;
+  font-size: 17px;
+  border-bottom: 1px solid #150F0F;
+}
+
+.contacts table tbody tr:not(#search) td {
+  padding: 10px;
+  color:rgb(123, 123, 123)
+}
+
+.contacts table tbody tr#search td input{
+  width: 100%;
+  padding: 7px
+}

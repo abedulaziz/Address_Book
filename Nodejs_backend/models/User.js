@@ -16,6 +16,7 @@ const UserSchema = new Schema({
     maxlength: 255,
     unique: true,
     dropDups: true,
+    lowercase: true,
     validate: [val => {new RegExp("^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$").test(val)}, "Please enter a valid email"]
   },
   password: {
