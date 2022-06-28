@@ -45,12 +45,14 @@ const SignUp = () => {
       console.log(JSON.stringify(formData));
 
       const registerReq = await axios.post(
+
         "http://localhost:5000/api/users/register",
         JSON.stringify(formData),
         {headers: {"content-type": "application/json"}}
         
       )
       console.log(registerReq)
+      document.cookie = `JWT=${registerReq.data.access_token};SameSite=None`; 
       window.location.href = "http://localhost:3000/contacts";
       
     }

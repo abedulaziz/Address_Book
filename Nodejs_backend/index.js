@@ -2,11 +2,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const Router = require("./routes")
 const cors = require("cors")
-
-const cookieParser = require("cookie-parser")
+const cookieParser = require("cookie-parser");
 
 const app = express();
 app.use(cors())
+app.use(cookieParser())
 
 
 app.use(cookieParser())
@@ -29,11 +29,6 @@ db.on("error", console.error.bind(console, "connection error: "));
 db.once("open", function () {
   console.log("Connected successfully");
 });
-
-app.get("/", (req, res) => {
-  res.send("haha")
-
-})
 
 app.use(Router)
 

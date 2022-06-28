@@ -28,8 +28,6 @@ module.exports.register = async(req, res) => {
     })
 
     const token = createToken(user._id)
-    res.cookie("jwt", token, {httpOnly: true, maxAge: 1800})
-
 
     res.json({access_token: token, id: user._id})
   } catch (err) {
