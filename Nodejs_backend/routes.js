@@ -1,8 +1,8 @@
 require("dotenv").config()
 
 const express = require("express");
+const cors = require('cors');
 const app = express();
-const jwt = require("jsonwebtoken")
 
 const authenticateToken = require("./middleware/auth")
 
@@ -11,10 +11,8 @@ const checkDuplicate = require("./middleware/checkDuplicates")
 const AuthController = require("./controllers/AuthContorller")
 const ContactsController = require("./controllers/ContactsController")
 
-const User = require("./models/User");
-
-
 app.use(express.json())
+
 
 
 app.post("/api/users/add_user", async (req, res) => {
@@ -51,7 +49,7 @@ app.post("/api/users/register", checkDuplicate, AuthController.register);
 app.post("/api/users/login", AuthController.login)
 
 // get user contacts
-app.get("/api/users/:user_id/get_contacts", authenticateToken, ContactsController)
+app.get("/api/users/:user_id/get_contacts", [authenticateToken, cors], ContactsController)
 
 
 module.exports = app
